@@ -12,13 +12,102 @@
   \maketitle
 
   %-----------------------------
-  %	TEXT
+  %  TEXT
   %-----------------------------
 
+  \section{Contexto y Conjunto de Datos}
+
+    \paragraph{}
+    [TODO]
+
+  \section{Cuestiones}
+
+    \paragraph{}
+    [TODO]
+
+    \subsection{Estudia el tipo de diseño adecuado para esta situación, e identifica las variables, factores y parámetros}
+
+      \paragraph{}
+      [TODO]
+
+    \subsection{?`Es adecuado usar las cefaleas como bloques?. ?`Existen diferencias significativas entre los tiempos de remisión de las cefaleas para los distintos analgésicos?}
+
+      \paragraph{}
+      [TODO]
+
+    \subsection{Estudia gráficamente la existencia de interacción entre analgésico y cefalea.}
+
+      \paragraph{}
+      [TODO]
+
+    \subsection{Determina mediante comparaciones múltiples cuál de los analgésicos es más eficaz.}
+
+      \paragraph{}
+      [TODO]
+
+    \subsection{Suponiendo que el analgésico A es un placebo, realiza el test de Dunnett}
+
+      \paragraph{}
+      [TODO]
+
+    \subsection{Haz un análisis gráfico de los residuos.}
+
+      \paragraph{}
+      [TODO]
+
+    \subsection{Si los analgésicos se hubieran elegido al azar entre todos los existentes, plantea el modelo adecuado y estima las componentes de la varianza.}
+
+      \paragraph{}
+      [TODO]
+
+
+    \subsection{Plantea el modelo como diseño unifactorial completamente aleatorizado y compara los resultados.}
+
+      \paragraph{}
+      [TODO]
+
+
+  \section{Código Fuente}
+
+    \paragraph{}
+    [TODO]
+
+    \begin{figure}[!h]
+      \centering
+      \begin{minted}[frame=single,framesep=5pt]{sas}
+data painkillers;
+  input duration painkiller$ cefalea;
+  datalines;
+  30 A 1
+  28 B 1
+  16 C 1
+  34 D 1
+  14 A 2
+  14 B 2
+  10 C 2
+  22 D 2
+  24 A 3
+  20 B 3
+  14 C 3
+  28 D 3
+  38 A 4
+  34 B 4
+  20 C 4
+  44 D 4
+  26 A 5
+  24 B 5
+  14 C 5
+  30 D 5
+;
+run;
+      \end{minted}
+      \caption{\emph{Código SAS:} Lectura del conjunto de datos.}
+      \label{code:sas_1}
+    \end{figure}
 
 
   %-----------------------------
-  %	Bibliographic references
+  %  Bibliographic references
   %-----------------------------
 
   \nocite{rano2017}
