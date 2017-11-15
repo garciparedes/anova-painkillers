@@ -88,9 +88,6 @@
       \paragraph{}
       A partir del contexto del conjunto de datos se ha asumido que el experimento se ha realizado bloqueando el factor tipo de \texttt{cefalea}. Además, tras visualizar el diagrama de cajas de dicha variable en la figura \ref{fig:boxplot-cefalea} se puede apreciar la existencia de gran variabilidad referida a este factor.
 
-      \paragraph{}
-      Dicha variabilidad sería tratada como ruido en el modelo, por lo que se ha decidido recoger en un bloque. Los resultados del test de igualdad de medias sobre este modelo se muestran en la figura \ref{fig:1f1b-anova-results}. Tal y como se puede apreciar, la variabilidad recogida por el bloque \texttt{cefalea} es muy elevada, además se rechaza la hipótesis nula por lo que el bloqueo ha sido positivo para el modelo.
-
       \begin{figure}[!h]
         \centering
         \includegraphics[width=.5\textwidth]{blocks-anova}
@@ -99,12 +96,12 @@
       \end{figure}
 
       \paragraph{}
-      En cuanto a las diferencias entre los distintos tratamientos del factor \texttt{analgésico}, se puede asegurar que estas son significativas con una confianza del $99\%$ debido al rechazo de la hipótesis nula de igualdad de medias.
-
-    \subsection{Estudia gráficamente la existencia de interacción entre analgésico y cefalea.}
+      Dicha variabilidad sería tratada como ruido en el modelo, por lo que se ha decidido recoger en un bloque. Los resultados del test de igualdad de medias sobre este modelo se muestran en la figura \ref{fig:1f1b-anova-results}. Tal y como se puede apreciar, la variabilidad recogida por el bloque \texttt{cefalea} es muy elevada, además se rechaza la hipótesis nula por lo que el bloqueo ha sido positivo para el modelo.
 
       \paragraph{}
-      En las figuras \ref{fig:interaction-analgesico} y \ref{fig:interaction-cefalea} se muestran los diagramas de interacción de las variables \texttt{analgésico} y \texttt{cefalea}. A partir de estos, se puede apreciar la no existencia de interacción entre ellos, ya que en ambos casos las rectas permanecen paralelas entre sí. A pesar de ello, estas son traslacciones verticales unas de otras, por lo que se puede asumir la existencia de diferencias entre las distintos tratamientos, pero no la interacción entre ellos.
+      En cuanto a las diferencias entre los distintos tratamientos del factor \texttt{analgésico}, se puede asegurar que estas son significativas con una confianza del $99\%$ debido al rechazo de la hipótesis nula de igualdad de medias.
+
+    \subsection{Estudia gráficamente la existencia de interacción entre analgésico y cefalea}
 
       \begin{figure}[!h]
         \centering
@@ -124,10 +121,10 @@
         \label{fig:interaction}
       \end{figure}
 
-    \subsection{Determina mediante comparaciones múltiples cuál de los analgésicos es más eficaz.}
-
       \paragraph{}
-      Como método de comparaciones múltiples se ha escogido \emph{Tukey} por su grado de potencia, con respecto a los requisitos necesarios para su utilización (número igual de observaciones en todos los tratamientos). Los resultados obtenidos se muestran en la figura \ref{tukey-test}.
+      En las figuras \ref{fig:interaction-analgesico} y \ref{fig:interaction-cefalea} se muestran los diagramas de interacción de las variables \texttt{analgésico} y \texttt{cefalea}. A partir de estos, se puede apreciar la no existencia de interacción entre ellos, ya que en ambos casos las rectas permanecen paralelas entre sí. A pesar de ello, estas son traslacciones verticales unas de otras, por lo que se puede asumir la existencia de diferencias entre las distintos tratamientos, pero no la interacción entre ellos.
+
+    \subsection{Determina mediante comparaciones múltiples cuál de los analgésicos es más eficaz}
 
       \begin{figure}[!h]
         \centering
@@ -137,33 +134,41 @@
       \end{figure}
 
       \paragraph{}
+      Como método de comparaciones múltiples se ha escogido \emph{Tukey} por su grado de potencia, con respecto a los requisitos necesarios para su utilización (número igual de observaciones en todos los tratamientos). Los resultados obtenidos se muestran en la figura \ref{fig:1f1b-anova-tukey-results}.
+
+      \paragraph{}
       Tal y como se puede apreciar en los resultados, el \textbf{analgésico C} es el más eficaz para la reducción del tiempo de cefalea, mientras que los analgésicos A y C podrían ser considerados igual de eficaces puesto que no se rechaza la hipótesis de igualdad de medias entre ellos.
 
     \subsection{Suponiendo que el analgésico A es un placebo, realiza el test de Dunnett}
 
       \paragraph{}
-      [TODO]
-
-
-      \begin{figure}[!h]
-        \centering
-        \includegraphics[width=.5\textwidth]{dunnet-test}
-        \caption{Resultados obtenidos en el método de \emph{Dunnett}}
-        \label{fig:1f1b-anova-dunnet-results}
-      \end{figure}
+      El test de \emph{Dunnett} se basa en la comparación de todos los trata respecto de otro denominado \emph{control}. En este caso se ha fijado como control el \emph{analgésico A}, el cual se ha denominado placebo. Los resultados obtenidos en este test se muestran en la figura \ref{fig:1f1b-anova-dunnet-results}.
 
       \begin{figure}[!h]
         \centering
-        \includegraphics[width=.5\textwidth]{plot-dunnet}
-        \caption{}
-        \label{}
+        \begin{subfigure}{.5\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{dunnet-test}
+          \caption{Resultados obtenidos en el método de \emph{Dunnett}}
+          \label{fig:1f1b-anova-dunnet-results}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{plot-dunnet}
+          \caption{Gráfico de resultados obtenidos en el método de \emph{Dunnett}}
+          \label{fig:1f1b-anova-dunnet-plot}
+        \end{subfigure}
+        \caption{Diagramas de cajas}
+        \label{fig:dunnet}
       \end{figure}
-
-
-    \subsection{Haz un análisis gráfico de los residuos.}
 
       \paragraph{}
-      [TODO]
+      Tal y como se puede apreciar, en este no existen diferencias significativas entre el \emph{placebo} y el \emph{analgésico B}. Sin embargo, si que existen sobre los \emph{analgésicos C y D}
+
+      \paragraph{}
+      En la figura \ref{fig:1f1b-anova-dunnet-plot} se muestran los resultados del test de \emph{Dunnett} de manera gráfica, a partir del cual se muestra la \say{dirección} de las diferencias. Por tanto, a partir de este se puede concluir que el \emph{analgésico B} es equivalente al \emph{placebo}, que a partir del \emph{analgésico C} se obtienen tiempos de remisión menores y que con el \emph{analgésico D} los tiempos de remisión aumentan.
+
+    \subsection{Haz un análisis gráfico de los residuos}
 
       \begin{figure}[!h]
         \centering
@@ -171,17 +176,20 @@
           \centering
           \includegraphics[width=\linewidth]{residuos}
           \caption{Resodios Estándar}
-          \label{fig:sub1}
+          \label{fig:residuos-standard}
         \end{subfigure}%
         \begin{subfigure}{.5\textwidth}
           \centering
           \includegraphics[width=\linewidth]{residuos-student}
           \caption{Residuos Studentizados}
-          \label{fig:sub2}
+          \label{fig:residuos-student}
         \end{subfigure}
         \caption{Diagramas de Residuos}
-        \label{fig:test}
+        \label{fig:residuos}
       \end{figure}
+
+      \paragraph{}
+      En las figuras \ref{fig:residuos-standard} y \ref{fig:residuos-student} se muestran los gráficos de \emph{residuos} y \emph{residuos Studentizados}. A partir de estos, se puede apreciar un sutíl falta de uniformidad en los errores. Sin embargo, esta no debería ser preocupante, debido a la reducida tasa de variabilidad explicada por los mismos. Según el coeficiente de determinación estos explican únicamente el $5\%$ de la variabilidad.
 
     \subsection{Si los analgésicos se hubieran elegido al azar entre todos los existentes, plantea el modelo adecuado y estima las componentes de la varianza.}
 
@@ -217,16 +225,20 @@
 
       \begin{figure}[!h]
         \centering
-        \includegraphics[width=.3\textwidth]{random-var}
-        \caption{Resultados de descomposición de la varianza de \emph{ANOVA} aleatorizado}
-        \label{fig:random-anova-results-1}
-      \end{figure}
-
-      \begin{figure}[!h]
-        \centering
-        \includegraphics[width=.5\textwidth]{random-anova}
-        \caption{Resultados del test de igualdad de medias sobre el \emph{ANOVA} aleatorizado}
-        \label{fig:random-anova-results-2}
+        \begin{subfigure}{.3\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{random-var}
+          \caption{Resultados de descomposición de la varianza}
+          \label{fig:random-anova-results-1}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{random-anova}
+          \caption{Resultados del test de igualdad de medias}
+          \label{fig:random-anova-results-2}
+        \end{subfigure}
+        \caption{\emph{ANOVA} aleatorizado}
+        \label{fig:random-anova}
       \end{figure}
 
       \paragraph{}
@@ -282,10 +294,7 @@
       Sin embargo, cabe destacar que estos resultados deben ser tomados con mucha prudencia, debido a que en este caso la variabilidad  del error es mucho mayor que en el modelo de \emph{1 factor + 1 bloque}, variando el coeficiente de determinación $R^2$ del valor $0.95$ a $0.46$. Es decir, con este modelo se explica aproximadamente la mitad de la variabilidad, por tanto no es un modelo acertado para este problema.
 
   \section{Código Fuente}
-
-    \paragraph{}
-    En esta sección se incluyen los distintos procedimientos de código \emph{SAS} utilizados para la realización de este trabajo.
-
+  
     \begin{figure}[!h]
       \centering
       \begin{minted}[frame=single,framesep=5pt]{sas}
