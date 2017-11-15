@@ -38,7 +38,12 @@
 
       \begin{align}
       \label{eq:1f1b_model}
-        Y_{ij} = \mu + T_\alpha + B_\beta + \epsilon_ij
+        Y_{ij} = \mu + T_\alpha + B_\beta + \epsilon_{\alpha \beta k} &&
+        \begin{split}
+          \alpha &\in \{1,...,n_\alpha \} \\
+          \beta &\in \{1, ..., n_\beta \} \\
+          k &\in \{1,...,  n_{\alpha\beta} \}
+        \end{split}
       \end{align}
 
       \paragraph{}
@@ -46,6 +51,15 @@
 
       \paragraph{}
       [TODO]
+
+      \begin{align}
+      \label{eq:1f_model_test}
+        \begin{split}
+          H_0: \mu_i = \mu_j &\quad  \forall i \neq j \\
+          H_1: \mu_i \neq \mu_j &\quad  \exists i \neq j
+        \end{split} & i,j\in \{1,...,n_\alpha\}
+      \end{align}
+
 
       \begin{figure}[H]
         \centering
@@ -168,36 +182,99 @@
     \subsection{Si los analgésicos se hubieran elegido al azar entre todos los existentes, plantea el modelo adecuado y estima las componentes de la varianza.}
 
       \paragraph{}
-      [TODO]
+      En este caso se pide tratar el factor \texttt{analgésico} como un factor aleatorio. Por tanto, el modelo a utilizar se define de manera diferente. Este se muestra en la ecuación \eqref{eq:1f_random_model}. A pesar de ser equivalente al anterior a nivel de notación, tiene una interpretación diferente tal y como se verá a continuación.
 
+      \begin{align}
+      \label{eq:1f_random_model}
+        Y_{ij} = \mu + \Tau_\alpha + B_\beta + \epsilon_{\alpha \beta k} &&
+        \begin{split}
+          \alpha &\in \{1,...,n_\alpha \} \\
+          \beta &\in \{1, ..., n_\beta \} \\
+          k &\in \{1,...,  n_{\alpha\beta} \}
+        \end{split}
+      \end{align}
+
+      \paragraph{}
+      En este caso el factor tratamiento $T_\alpha$ pasa a denotarse como $\Tau_\alpha$ y en lugar de representar la diferencia respecto del fator $\alpha$ como un valor escalar, ahora se refiere a una variable aleatoria $\Tau \sim N(0, \sigma_\Tau^2)$. Gracias a esta diferencia, el test \emph{ANOVA} se formula de una manera diferente, en este caso se estudia el efecto de la varianza $\sigma_\Tau^2$, tal y como se indica en la ecuación \eqref{eq:1f_random_model_test}.
+
+      \begin{align}
+      \label{eq:1f_random_model_test}
+        \begin{split}
+          H_0: \sigma^2_\Tau = 0 \\
+          H_1: \sigma^2_\Tau > 0
+        \end{split}
+      \end{align}
+
+      \paragraph{}
+      Desde esta perspectiva, ya no tiene sentido estudiar si un tratamiento genera mejores resultados que otro, sino que únicamente se analiza desde el punto de vista de la homogeneidad de la población.
+
+      \paragraph{}
+      Tras realizar el \emph{ANOVA} utilizando este modelo, los resultados obtenidos se muestran en las figuras \ref{fig:random-anova-results-1} y \ref{fig:random-anova-results-2}. A partir de dichos resultados se obtiene la conclusión de que se trata de una población heterogénea, es decir, con distintas subpoblaciónes, dado que la hipótesis nula es rechazada con un $p-valor$ muy próximo a cero.
 
       \begin{figure}[H]
         \centering
         \includegraphics[width=.3\textwidth]{random-var}
-        \caption{}
-        \label{}
+        \caption{Resultados de descomposición de la varianza de \emph{ANOVA} aleatorizado}
+        \label{fig:random-anova-results-1}
       \end{figure}
-
 
       \begin{figure}[H]
         \centering
         \includegraphics[width=.5\textwidth]{random-anova}
-        \caption{}
-        \label{}
+        \caption{Resultados del test \emph{ANOVA} aleatorizado}
+        \label{fig:random-anova-results-2}
       \end{figure}
 
+      \paragraph{}
+      A partir de estos resultados puede obtenerse una estimación acerca de la varianza del factor \texttt{analgésico}, la cual se realiza a continuación
+
+      \begin{align*}
+        Var(\text{Error}) + 5 Var(\text{analgésico}) &= 246.\widehat{6} \\
+        Var(\text{Error}) &= 6.1\widehat{6} \\
+        &\implies Var(\text{analgésico}) = \frac{246.\widehat{6} - 6.1\widehat{6}}{5} \approx 48.1
+      \end{align*}
 
     \subsection{Plantea el modelo como diseño unifactorial completamente aleatorizado y compara los resultados.}
 
       \paragraph{}
-      [TODO]
+      En esta sección se realiza el test de igualdad de medias asumiendo la selección complemtamente aleatoria de las observaciones respecto del factor \texttt{analgésico}, de tal manera que se ignora la agrupación por tipos de \texttt{cefalea}. Por tango, el modelo descrito en la ecuación \eqref{eq:1f1b_model} puede reducirse al que se muestra en la ecuación \eqref{eq:1f_model}.
+
+      \paragraph{}
+      Sin embargo, en este caso, toda la variabilidad procedente del bloqueo del factor tipo de \texttt{cefalea} se convierte en error no explicado por el modelo. Es decir, ahora lo recoge la variable $\epsilon_{\alpha j}$.
+
+      \begin{align}
+      \label{eq:1f_model}
+        Y_{ij} = \mu + T_\alpha + \epsilon_{\alpha j}  &&
+        \begin{split}
+          i &\in \{1,...,n_\alpha\}\\
+          j &\in \{1, ..., n_i\}
+        \end{split}
+      \end{align}
+
+      \paragraph{}
+      El test para la igualdad de medias, en este caso se plante de manera equivalente, tal y como se indica en la ecuación \eqref{eq:1f_model_test}. Puesto que la variabilidad procedente del tipo de cefalea ahora es recogido por el error no explicado por el modelo ($\epsilon_{\alpha j}$), las conclusiones que se puedan obtener a partir del estudio del análisis de la varianza deberán ser tomadas con mayor prudencia.
+
+      \begin{align}
+      \label{eq:1f_model_test}
+        \begin{split}
+          H_0: \mu_i = \mu_j &\quad  \forall i \neq j \\
+          H_1: \mu_i \neq \mu_j &\quad  \exists i \neq j
+        \end{split} & i,j\in \{1,...,n_{\alpha}\}
+      \end{align}
+
+      \paragraph{}
+      En la figura \ref{fig:simple-anova-results} se muestran los resultados obtenidos tras las realización del estudio \emph{ANOVA} de un factor. Tal y como se puede apreciar, en este caso también se debe rechazar la hipótesis de igualdad de medias, puesto que el \emph{p-valor} del test es muy bajo $(0.0167)$. Por tanto, se puede asegurar con un nivel de confianza del $98\%$ que existen diferencias significativas entre los resultados de los distintos analgésicos.
 
       \begin{figure}[H]
         \centering
         \includegraphics[width=.5\textwidth]{simple-anova}
-        \caption{}
-        \label{}
+        \caption{Resultados de \emph{ANOVA} de un factor}
+        \label{fig:simple-anova-results}
       \end{figure}
+
+
+      \paragraph{}
+      Sin embargo, cabe destacar que estos resultados deben ser tomados con mucha prudencia, debido a que en este caso la variabilidad  del error es mucho mayor que en el modelo de \emph{1 factor + 1 bloque}, variando el coeficiente de determinación $R^2$ del valor $0.95$ a $0.46$. Es decir, con este modelo se explica aproximadamente la mitad de la variabilidad, por tanto no es un modelo acertado para este problema.
 
   \section{Código Fuente}
 
