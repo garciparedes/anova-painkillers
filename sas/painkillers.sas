@@ -45,22 +45,25 @@ proc sgplot data=painkillers;
 	vbox duration /group=cefalea;
 run;
 
-*graficos de interacciones;
-
-proc sgplot data=painkillers;
-	series y=duration x=cefalea / group=painkiller;
-run;
-
-proc sgplot data=painkillers;
-	series y=duration x=painkiller / group=cefalea;
-run;
-
 proc glm data=painkillers;
+	*class cefalea painkiller;
 	class painkiller cefalea;
 	model duration=painkiller cefalea ;
-	output out=soluc P=predicho R=residuo;
+	lsmeans painkiller / adjust=tukey;
+	lsmeans painkiller / adjust=dunnett;
+	random painkiller / test;
+	output out=soluc P=predicho R=residuo student=residuo_student;
 run;
 
 proc sgplot data=soluc;
 	scatter y=residuo x=predicho;
+run;
+proc sgplot data=soluc;
+	scatter y=residuo_student x=predicho;
+run;
+
+
+proc glm data=painkillers;
+	class painkiller;
+	model duration=painkiller;
 run;

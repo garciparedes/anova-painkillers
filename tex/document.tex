@@ -48,21 +48,21 @@
       [TODO]
 
       \begin{figure}[H]
-      \centering
-      \begin{subfigure}{.5\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{box-plot-analgesico}
-        \caption{\texttt{analgésico}}
-        \label{fig:sub1}
-      \end{subfigure}%
-      \begin{subfigure}{.5\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{box-plot-cefalea}
-        \caption{\texttt{cefalea}}
-        \label{fig:sub2}
-      \end{subfigure}
-      \caption{Diagramas de cajas}
-      \label{fig:test}
+        \begin{subfigure}{.5\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{box-plot-analgesico}
+          \caption{\texttt{analgésico}}
+          \label{fig:sub1}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{box-plot-cefalea}
+          \caption{\texttt{cefalea}}
+          \label{fig:sub2}
+        \end{subfigure}
+        \caption{Diagramas de cajas}
+        \label{fig:test}
       \end{figure}
 
 
@@ -71,27 +71,34 @@
       \paragraph{}
       [TODO]
 
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=.5\textwidth]{blocks-anova}
+        \caption{}
+        \label{}
+      \end{figure}
+
     \subsection{Estudia gráficamente la existencia de interacción entre analgésico y cefalea.}
 
       \paragraph{}
       [TODO]
 
       \begin{figure}[H]
-      \centering
-      \begin{subfigure}{.5\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{interaction-analgesico}
-        \caption{\texttt{analgésico}}
-        \label{fig:sub1}
-      \end{subfigure}%
-      \begin{subfigure}{.5\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{interaction-cefalea}
-        \caption{\texttt{cefalea}}
-        \label{fig:sub2}
-      \end{subfigure}
-      \caption{Diagramas de Interacción}
-      \label{fig:test}
+        \begin{subfigure}{.5\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{interaction-analgesico}
+          \caption{\texttt{analgésico}}
+          \label{fig:sub1}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{interaction-cefalea}
+          \caption{\texttt{cefalea}}
+          \label{fig:sub2}
+        \end{subfigure}
+        \caption{Diagramas de Interacción}
+        \label{fig:test}
       \end{figure}
 
 
@@ -100,10 +107,40 @@
       \paragraph{}
       [TODO]
 
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=.5\textwidth]{tukey-test}
+        \caption{}
+        \label{}
+      \end{figure}
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=.5\textwidth]{plot-tukey}
+        \caption{}
+        \label{}
+      \end{figure}
+
     \subsection{Suponiendo que el analgésico A es un placebo, realiza el test de Dunnett}
 
       \paragraph{}
       [TODO]
+
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=.5\textwidth]{dunnet-test}
+        \caption{}
+        \label{}
+      \end{figure}
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=.5\textwidth]{plot-dunnet}
+        \caption{}
+        \label{}
+      \end{figure}
+
 
     \subsection{Haz un análisis gráfico de los residuos.}
 
@@ -112,9 +149,20 @@
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=.5\textwidth]{residuos}
-        \caption{}
-        \label{}
+        \begin{subfigure}{.5\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{residuos}
+          \caption{Resodios Estándar}
+          \label{fig:sub1}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{residuos-student}
+          \caption{Residuos Studentizados}
+          \label{fig:sub2}
+        \end{subfigure}
+        \caption{Diagramas de Residuos}
+        \label{fig:test}
       \end{figure}
 
     \subsection{Si los analgésicos se hubieran elegido al azar entre todos los existentes, plantea el modelo adecuado y estima las componentes de la varianza.}
@@ -123,18 +171,40 @@
       [TODO]
 
 
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=.3\textwidth]{random-var}
+        \caption{}
+        \label{}
+      \end{figure}
+
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=.5\textwidth]{random-anova}
+        \caption{}
+        \label{}
+      \end{figure}
+
+
     \subsection{Plantea el modelo como diseño unifactorial completamente aleatorizado y compara los resultados.}
 
       \paragraph{}
       [TODO]
 
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=.5\textwidth]{simple-anova}
+        \caption{}
+        \label{}
+      \end{figure}
 
   \section{Código Fuente}
 
     \paragraph{}
-    [TODO]
+    En esta sección se incluyen los distintos procedimientos de código \emph{SAS} utilizados para la realización de este trabajo.
 
-    \begin{figure}[!h]
+    \begin{figure}[H]
       \centering
       \begin{minted}[frame=single,framesep=5pt]{sas}
 data painkillers;
@@ -162,12 +232,71 @@ data painkillers;
   30 D 5
 ;
 run;
+proc print data=painkillers;
+run;
       \end{minted}
       \caption{\emph{Código SAS:} Lectura del conjunto de datos.}
       \label{code:sas_1}
     \end{figure}
 
+    \begin{figure}[H]
+      \centering
+      \begin{minted}[frame=single,framesep=5pt]{sas}
 
+proc sgplot data=painkillers;
+  vbox duration / group=painkiller;
+run;
+
+proc sgplot data=painkillers;
+  vbox duration /group=cefalea;
+run;
+      \end{minted}
+      \caption{\emph{Código SAS:} Generación de los diagramas de cajas.}
+      \label{code:sas_2}
+    \end{figure}
+
+    \begin{figure}[H]
+      \centering
+      \begin{minted}[frame=single,framesep=5pt]{sas}
+proc glm data=painkillers;
+  *class cefalea painkiller;
+  class painkiller cefalea;
+  model duration=painkiller cefalea ;
+  lsmeans painkiller / adjust=tukey;
+  lsmeans painkiller / adjust=dunnett;
+  random painkiller / test;
+  output out=soluc P=predicho R=residuo student=residuo_student;
+run;
+      \end{minted}
+      \caption{\emph{Código SAS:} Realización de ANOVA por bloques.}
+      \label{code:sas_3}
+    \end{figure}
+
+    \begin{figure}[H]
+      \centering
+      \begin{minted}[frame=single,framesep=5pt]{sas}
+proc sgplot data=soluc;
+  scatter y=residuo x=predicho;
+run;
+
+proc sgplot data=soluc;
+  scatter y=residuo_student x=predicho;
+run;
+      \end{minted}
+      \caption{\emph{Código SAS:} Generación de diagramas de residuos.}
+      \label{code:sas_4}
+    \end{figure}
+    \begin{figure}[H]
+      \centering
+      \begin{minted}[frame=single,framesep=5pt]{sas}
+proc glm data=painkillers;
+  class painkiller;
+  model duration=painkiller;
+run;
+      \end{minted}
+      \caption{\emph{Código SAS:} Realización de ANOVA completamente aleatorizado.}
+      \label{code:sas_5}
+    \end{figure}
   %-----------------------------
   %  Bibliographic references
   %-----------------------------
