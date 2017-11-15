@@ -50,90 +50,94 @@
       Por dichas razones, utilizaremos el modelo de \emph{1 factor + 1 bloque}, el cual se muestra en la ecuación \eqref{eq:1f1b_model}. A este modelo se le ha añadido además la componente $\epsilon_ij$, que representa el error aleatorio y sigue una distribución $N(0, \sigma^2)$, asumiendo que $\sigma^2$ es la misma para todas las observaciones.
 
       \paragraph{}
-      [TODO]
+      El contraste test de igualdad de medias se describe tal y como se indica en la ecuación \eqref{eq:1f1b_model_test}, que tal y como se puede apreciar, se lleva a cabo teniendo en cuenta únicamente las medias del factor tratamiento, ya que el factor bloque es utilizado únicamente para reducir la variabilidad del modelo.
 
       \begin{align}
-      \label{eq:1f_model_test}
+      \label{eq:1f1b_model_test}
         \begin{split}
-          H_0: \mu_i = \mu_j &\quad  \forall i \neq j \\
-          H_1: \mu_i \neq \mu_j &\quad  \exists i \neq j
-        \end{split} & i,j\in \{1,...,n_\alpha\}
+          H_0 &: \forall i,j \ \mu_i = \mu_j  \\
+          H_1 &: \exists i,j \ \mu_i \neq \mu_j
+        \end{split} &
+        i,j\in \{1,...,n_\alpha\}, \ i \neq j
       \end{align}
 
+      \paragraph{}
+      En las figuras \ref{fig:boxplot-analgesico} y \ref{fig:boxplot-cefalea} se muestran los diagramas de caja de la variable respuesta \texttt{tiempo de remisión} agrupados por \texttt{analgésico} y \texttt{cefalea} respectivamente. En estos gráficos se puede apreciar la existencia de diferencias entre las distintas agrupaciones. Por tanto, tiene sentido el estudio del \emph{análisis de la varianza} sobre estas para obtener conclusiones más claras de manera analítica.
 
-      \begin{figure}[H]
+      \begin{figure}[!h]
         \centering
         \begin{subfigure}{.5\textwidth}
           \centering
           \includegraphics[width=\linewidth]{box-plot-analgesico}
           \caption{\texttt{analgésico}}
-          \label{fig:sub1}
+          \label{fig:boxplot-analgesico}
         \end{subfigure}%
         \begin{subfigure}{.5\textwidth}
           \centering
           \includegraphics[width=\linewidth]{box-plot-cefalea}
           \caption{\texttt{cefalea}}
-          \label{fig:sub2}
+          \label{fig:boxplot-cefalea}
         \end{subfigure}
         \caption{Diagramas de cajas}
-        \label{fig:test}
+        \label{fig:boxplot}
       \end{figure}
 
 
     \subsection{?`Es adecuado usar las cefaleas como bloques?. ?`Existen diferencias significativas entre los tiempos de remisión de las cefaleas para los distintos analgésicos?}
 
       \paragraph{}
-      [TODO]
+      A partir del contexto del conjunto de datos se ha asumido que el experimento se ha realizado bloqueando el factor tipo de \texttt{cefalea}. Además, tras visualizar el diagrama de cajas de dicha variable en la figura \ref{fig:boxplot-cefalea} se puede apreciar la existencia de gran variabilidad referida a este factor.
 
-      \begin{figure}[H]
+      \paragraph{}
+      Dicha variabilidad sería tratada como ruido en el modelo, por lo que se ha decidido recoger en un bloque. Los resultados del test de igualdad de medias sobre este modelo se muestran en la figura \ref{fig:1f1b-anova-results}. Tal y como se puede apreciar, la variabilidad recogida por el bloque \texttt{cefalea} es muy elevada, además se rechaza la hipótesis nula por lo que el bloqueo ha sido positivo para el modelo.
+
+      \begin{figure}[!h]
         \centering
         \includegraphics[width=.5\textwidth]{blocks-anova}
-        \caption{}
-        \label{}
+        \caption{Resultados del test de igualdad de medias sobre el \emph{ANOVA} de 1 factor y un bloque}
+        \label{fig:1f1b-anova-results}
       \end{figure}
+
+      \paragraph{}
+      En cuanto a las diferencias entre los distintos tratamientos del factor \texttt{analgésico}, se puede asegurar que estas son significativas con una confianza del $99\%$ debido al rechazo de la hipótesis nula de igualdad de medias.
 
     \subsection{Estudia gráficamente la existencia de interacción entre analgésico y cefalea.}
 
       \paragraph{}
-      [TODO]
+      En las figuras \ref{fig:interaction-analgesico} y \ref{fig:interaction-cefalea} se muestran los diagramas de interacción de las variables \texttt{analgésico} y \texttt{cefalea}. A partir de estos, se puede apreciar la no existencia de interacción entre ellos, ya que en ambos casos las rectas permanecen paralelas entre sí. A pesar de ello, estas son traslacciones verticales unas de otras, por lo que se puede asumir la existencia de diferencias entre las distintos tratamientos, pero no la interacción entre ellos.
 
-      \begin{figure}[H]
+      \begin{figure}[!h]
         \centering
         \begin{subfigure}{.5\textwidth}
           \centering
           \includegraphics[width=\linewidth]{interaction-analgesico}
           \caption{\texttt{analgésico}}
-          \label{fig:sub1}
+          \label{fig:interaction-analgesico}
         \end{subfigure}%
         \begin{subfigure}{.5\textwidth}
           \centering
           \includegraphics[width=\linewidth]{interaction-cefalea}
           \caption{\texttt{cefalea}}
-          \label{fig:sub2}
+          \label{fig:interaction-cefalea}
         \end{subfigure}
         \caption{Diagramas de Interacción}
-        \label{fig:test}
+        \label{fig:interaction}
       \end{figure}
-
 
     \subsection{Determina mediante comparaciones múltiples cuál de los analgésicos es más eficaz.}
 
       \paragraph{}
-      [TODO]
+      Como método de comparaciones múltiples se ha escogido \emph{Tukey} por su grado de potencia, con respecto a los requisitos necesarios para su utilización (número igual de observaciones en todos los tratamientos). Los resultados obtenidos se muestran en la figura \ref{tukey-test}.
 
-      \begin{figure}[H]
+      \begin{figure}[!h]
         \centering
         \includegraphics[width=.5\textwidth]{tukey-test}
-        \caption{}
-        \label{}
+        \caption{Resultados obtenidos en el método de \emph{Tukey}}
+        \label{fig:1f1b-anova-tukey-results}
       \end{figure}
 
-      \begin{figure}[H]
-        \centering
-        \includegraphics[width=.5\textwidth]{plot-tukey}
-        \caption{}
-        \label{}
-      \end{figure}
+      \paragraph{}
+      Tal y como se puede apreciar en los resultados, el \textbf{analgésico C} es el más eficaz para la reducción del tiempo de cefalea, mientras que los analgésicos A y C podrían ser considerados igual de eficaces puesto que no se rechaza la hipótesis de igualdad de medias entre ellos.
 
     \subsection{Suponiendo que el analgésico A es un placebo, realiza el test de Dunnett}
 
@@ -141,14 +145,14 @@
       [TODO]
 
 
-      \begin{figure}[H]
+      \begin{figure}[!h]
         \centering
         \includegraphics[width=.5\textwidth]{dunnet-test}
-        \caption{}
-        \label{}
+        \caption{Resultados obtenidos en el método de \emph{Dunnett}}
+        \label{fig:1f1b-anova-dunnet-results}
       \end{figure}
 
-      \begin{figure}[H]
+      \begin{figure}[!h]
         \centering
         \includegraphics[width=.5\textwidth]{plot-dunnet}
         \caption{}
@@ -161,7 +165,7 @@
       \paragraph{}
       [TODO]
 
-      \begin{figure}[H]
+      \begin{figure}[!h]
         \centering
         \begin{subfigure}{.5\textwidth}
           \centering
@@ -211,17 +215,17 @@
       \paragraph{}
       Tras realizar el \emph{ANOVA} utilizando este modelo, los resultados obtenidos se muestran en las figuras \ref{fig:random-anova-results-1} y \ref{fig:random-anova-results-2}. A partir de dichos resultados se obtiene la conclusión de que se trata de una población heterogénea, es decir, con distintas subpoblaciónes, dado que la hipótesis nula es rechazada con un $p-valor$ muy próximo a cero.
 
-      \begin{figure}[H]
+      \begin{figure}[!h]
         \centering
         \includegraphics[width=.3\textwidth]{random-var}
         \caption{Resultados de descomposición de la varianza de \emph{ANOVA} aleatorizado}
         \label{fig:random-anova-results-1}
       \end{figure}
 
-      \begin{figure}[H]
+      \begin{figure}[!h]
         \centering
         \includegraphics[width=.5\textwidth]{random-anova}
-        \caption{Resultados del test \emph{ANOVA} aleatorizado}
+        \caption{Resultados del test de igualdad de medias sobre el \emph{ANOVA} aleatorizado}
         \label{fig:random-anova-results-2}
       \end{figure}
 
@@ -257,18 +261,19 @@
       \begin{align}
       \label{eq:1f_model_test}
         \begin{split}
-          H_0: \mu_i = \mu_j &\quad  \forall i \neq j \\
-          H_1: \mu_i \neq \mu_j &\quad  \exists i \neq j
-        \end{split} & i,j\in \{1,...,n_{\alpha}\}
+          H_0 &: \forall i,j \ \mu_i = \mu_j  \\
+          H_1 &: \exists i,j \ \mu_i \neq \mu_j
+        \end{split} &
+        i,j\in \{1,...,n_\alpha\}, \ i \neq j
       \end{align}
 
       \paragraph{}
       En la figura \ref{fig:simple-anova-results} se muestran los resultados obtenidos tras las realización del estudio \emph{ANOVA} de un factor. Tal y como se puede apreciar, en este caso también se debe rechazar la hipótesis de igualdad de medias, puesto que el \emph{p-valor} del test es muy bajo $(0.0167)$. Por tanto, se puede asegurar con un nivel de confianza del $98\%$ que existen diferencias significativas entre los resultados de los distintos analgésicos.
 
-      \begin{figure}[H]
+      \begin{figure}[!h]
         \centering
         \includegraphics[width=.5\textwidth]{simple-anova}
-        \caption{Resultados de \emph{ANOVA} de un factor}
+        \caption{Resultados del teste de igualdad de medias sobre el \emph{ANOVA} de un factor}
         \label{fig:simple-anova-results}
       \end{figure}
 
@@ -281,7 +286,7 @@
     \paragraph{}
     En esta sección se incluyen los distintos procedimientos de código \emph{SAS} utilizados para la realización de este trabajo.
 
-    \begin{figure}[H]
+    \begin{figure}[!h]
       \centering
       \begin{minted}[frame=single,framesep=5pt]{sas}
 data painkillers;
@@ -316,7 +321,7 @@ run;
       \label{code:sas_1}
     \end{figure}
 
-    \begin{figure}[H]
+    \begin{figure}[!h]
       \centering
       \begin{minted}[frame=single,framesep=5pt]{sas}
 
@@ -332,7 +337,7 @@ run;
       \label{code:sas_2}
     \end{figure}
 
-    \begin{figure}[H]
+    \begin{figure}[!h]
       \centering
       \begin{minted}[frame=single,framesep=5pt]{sas}
 proc glm data=painkillers;
@@ -349,7 +354,7 @@ run;
       \label{code:sas_3}
     \end{figure}
 
-    \begin{figure}[H]
+    \begin{figure}[!h]
       \centering
       \begin{minted}[frame=single,framesep=5pt]{sas}
 proc sgplot data=soluc;
@@ -363,7 +368,7 @@ run;
       \caption{\emph{Código SAS:} Generación de diagramas de residuos.}
       \label{code:sas_4}
     \end{figure}
-    \begin{figure}[H]
+    \begin{figure}[!h]
       \centering
       \begin{minted}[frame=single,framesep=5pt]{sas}
 proc glm data=painkillers;
