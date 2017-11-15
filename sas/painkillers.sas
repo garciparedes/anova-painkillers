@@ -45,3 +45,19 @@ run;
 proc sgplot data = painkillers;
 	vbox duration /group = cefalea;
 run;
+
+
+
+*graficos de interacciones;
+proc sgplot data=painkillers;
+	series y=duration x=cefalea / group=painkiller;
+run;
+
+
+proc sgplot data=painkillers;
+	series y=duration x=painkiller / group=cefalea;
+run;
+
+
+
+

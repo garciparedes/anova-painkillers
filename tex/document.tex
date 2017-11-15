@@ -21,7 +21,7 @@
     En este trabajo se va a realizar un estudio acerca de la diferencia de medias sobre el conjunto de datos \texttt{painkillers}, el cual se refiere a un experimento sobre \emph{Analgésicos Infantiles}. Para ello, se utilizará la técnica de \emph{Análisis de la Varianza (ANOVA)}. Una contextualización más detallada del experimento se describe a partir del siguiente enunciado:
 
     \paragraph{}
-    \say{El departamento de pediatría de un hospital desea analizar la eficacia de cuatro analgésicos infantiles ante las cefaleas. Para ello, realiza un experimento en el que se seleccionan aleatoriamente cinco grupos de cuatro pacientes, de manera que en cada grupo se da un tipo de cefalea distinto. A continuación se suministra, también de forma aleatoria, cada analgésico a uno de los pacientes de cada grupo, y se observa el tiempo de remisión de la cefalea, en minutos. Se registran los datos siguientes, en cada uno de los cinco grupos (\texttt{tiempo de remisión} – \texttt{analgésico} – \texttt{tipo de cefalea}).}
+    \say{El departamento de pediatría de un hospital desea analizar la eficacia de cuatro analgésicos infantiles ante las cefaleas. Para ello, realiza un experimento en el que se seleccionan aleatoriamente cinco grupos de cuatro pacientes, de manera que en cada grupo se da un cefalea distinto. A continuación se suministra, también de forma aleatoria, cada analgésico a uno de los pacientes de cada grupo, y se observa el tiempo de remisión de la cefalea, en minutos. Se registran los datos siguientes, en cada uno de los cinco grupos (\texttt{tiempo de remisión}, \texttt{analgésico} y \texttt{cefalea}).}
 
   \section{Cuestiones}
 
@@ -31,11 +31,10 @@
     \subsection{Estudia el tipo de diseño adecuado para esta situación, e identifica las variables, factores y parámetros}
 
       \paragraph{}
-      Tras analizar el contexto del experimento, se sabe que la variable respuesta $Y$ que se utilizará para el \emph{análisis de la varianza} es \texttt{tiempo de remisión}, dado que es la que se utiliza para cuantificar la calidad del tratamiento. En cuanto a las variables a partir de las cuales se pretende explicar el \texttt{tiempo de remisión}, estas son el \texttt{analgésico} y el \texttt{tipo de cefalea}.
+      Tras analizar el contexto del experimento, se sabe que la variable respuesta $Y$ que se utilizará para el \emph{análisis de la varianza} es \texttt{tiempo de remisión}, dado que es la que se utiliza para cuantificar la calidad del tratamiento. En cuanto a las variables a partir de las cuales se pretende explicar el \texttt{tiempo de remisión}, estas son el \texttt{analgésico} y el \texttt{cefalea}.
 
-      Sin embargo, estas no han sido seleccionadas de la misma manera, dado que tal y como se indica en el enunciado, se han fiajado \emph{a priori} $5$ \texttt{tipos de cefalea} sobre los cuales aplicar los $4$ tipos de \texttt{analgésico}. Por tanto, podemos interpretar dicha situación diciendo que el factor \texttt{tipos de cefalea} representa un \textbf{bloque} (que denotaremos por $B_\beta$ siendo $\beta \in \{1,2,3,4,5\}$ el identificador de cada uno de los niveles del bloque), y asumiento que el factor \texttt{analgésico} representa un \textbf{tratamiento} (que denotaremos por $T_\alpha $ siendo $\alpha \in \{A, B, C, D\}$ el identificador de cada uno de los niveles del tratamiento).
-
-
+      \paragraph{}
+      Sin embargo, estas no han sido seleccionadas de la misma manera, dado que tal y como se indica en el enunciado, se han fijado $4$ muestras de \emph{a priori} $5$ \texttt{tipos de cefalea}, sobre los cuales aplicar los $4$ tipos de \texttt{analgésico}. Por tanto, podemos interpretar dicha situación diciendo que el factor \texttt{tipos de cefalea} representa un \textbf{bloque} (que denotaremos por $B_\beta$ siendo $\beta \in \{1,2,3,4,5\}$ el identificador de cada uno de los niveles del bloque), y asumiento que el factor \texttt{analgésico} representa un \textbf{tratamiento} (que denotaremos por $T_\alpha $ siendo $\alpha \in \{A, B, C, D\}$ el identificador de cada uno de los niveles del tratamiento).
 
       \begin{align}
       \label{eq:1f1b_model}
@@ -48,6 +47,25 @@
       \paragraph{}
       [TODO]
 
+      \begin{figure}
+      \centering
+      \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{box-plot-analgesico}
+        \caption{\texttt{analgésico}}
+        \label{fig:sub1}
+      \end{subfigure}%
+      \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{box-plot-cefalea}
+        \caption{\texttt{cefalea}}
+        \label{fig:sub2}
+      \end{subfigure}
+      \caption{Diagramas de cajas}
+      \label{fig:test}
+      \end{figure}
+
+
     \subsection{?`Es adecuado usar las cefaleas como bloques?. ?`Existen diferencias significativas entre los tiempos de remisión de las cefaleas para los distintos analgésicos?}
 
       \paragraph{}
@@ -57,6 +75,25 @@
 
       \paragraph{}
       [TODO]
+
+      \begin{figure}
+      \centering
+      \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{interaction-analgesico}
+        \caption{\texttt{analgésico}}
+        \label{fig:sub1}
+      \end{subfigure}%
+      \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{interaction-cefalea}
+        \caption{\texttt{cefalea}}
+        \label{fig:sub2}
+      \end{subfigure}
+      \caption{Diagramas de Interacción}
+      \label{fig:test}
+      \end{figure}
+
 
     \subsection{Determina mediante comparaciones múltiples cuál de los analgésicos es más eficaz.}
 
