@@ -18,14 +18,32 @@
   \section{Contexto y Conjunto de Datos}
 
     \paragraph{}
-    [TODO]
+    En este trabajo se va a realizar un estudio acerca de la diferencia de medias sobre el conjunto de datos \texttt{painkillers}, el cual se refiere a un experimento sobre \emph{Analgésicos Infantiles}. Para ello, se utilizará la técnica de \emph{Análisis de la Varianza (ANOVA)}. Una contextualización más detallada del experimento se describe a partir del siguiente enunciado:
+
+    \paragraph{}
+    \say{El departamento de pediatría de un hospital desea analizar la eficacia de cuatro analgésicos infantiles ante las cefaleas. Para ello, realiza un experimento en el que se seleccionan aleatoriamente cinco grupos de cuatro pacientes, de manera que en cada grupo se da un tipo de cefalea distinto. A continuación se suministra, también de forma aleatoria, cada analgésico a uno de los pacientes de cada grupo, y se observa el tiempo de remisión de la cefalea, en minutos. Se registran los datos siguientes, en cada uno de los cinco grupos (\texttt{tiempo de remisión} – \texttt{analgésico} – \texttt{tipo de cefalea}).}
 
   \section{Cuestiones}
 
     \paragraph{}
-    [TODO]
+    En esta sección se incluyen una serie de cuestiones que serán resueltas mediante el estudio del conjunto de datos a partir de la técnica \emph{ANOVA}.
 
     \subsection{Estudia el tipo de diseño adecuado para esta situación, e identifica las variables, factores y parámetros}
+
+      \paragraph{}
+      Tras analizar el contexto del experimento, se sabe que la variable respuesta $Y$ que se utilizará para el \emph{análisis de la varianza} es \texttt{tiempo de remisión}, dado que es la que se utiliza para cuantificar la calidad del tratamiento. En cuanto a las variables a partir de las cuales se pretende explicar el \texttt{tiempo de remisión}, estas son el \texttt{analgésico} y el \texttt{tipo de cefalea}.
+
+      Sin embargo, estas no han sido seleccionadas de la misma manera, dado que tal y como se indica en el enunciado, se han fiajado \emph{a priori} $5$ \texttt{tipos de cefalea} sobre los cuales aplicar los $4$ tipos de \texttt{analgésico}. Por tanto, podemos interpretar dicha situación diciendo que el factor \texttt{tipos de cefalea} representa un \textbf{bloque} (que denotaremos por $B_\beta$ siendo $\beta \in \{1,2,3,4,5\}$ el identificador de cada uno de los niveles del bloque), y asumiento que el factor \texttt{analgésico} representa un \textbf{tratamiento} (que denotaremos por $T_\alpha $ siendo $\alpha \in \{A, B, C, D\}$ el identificador de cada uno de los niveles del tratamiento).
+
+
+
+      \begin{align}
+      \label{eq:1f1b_model}
+        Y_{ij} = \mu + T_\alpha + B_\beta + \epsilon_ij
+      \end{align}
+
+      \paragraph{}
+      Por dichas razones, utilizaremos el modelo de \emph{1 factor + 1 bloque}, el cual se muestra en la ecuación \eqref{eq:1f1b_model}. A este modelo se le ha añadido además la componente $\epsilon_ij$, que representa el error aleatorio y sigue una distribución $N(0, \sigma^2)$, asumiendo que $\sigma^2$ es la misma para todas las observaciones.
 
       \paragraph{}
       [TODO]

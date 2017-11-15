@@ -37,3 +37,11 @@ run;
 
 proc print data=painkillers;
 run;
+
+proc sgplot data = painkillers;
+	vbox duration / group= painkiller;
+run;
+
+proc sgplot data = painkillers;
+	vbox duration /group = cefalea;
+run;
